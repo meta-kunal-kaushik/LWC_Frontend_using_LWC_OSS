@@ -36,6 +36,7 @@
     },
     "repository": "my-app",
     "scripts": {
+        "start": "node scripts/server.js",
         "build": "lwc-services build -m production",
         "build:development": "lwc-services build",
         "lint": "eslint ./src/**/*.js",
