@@ -41,22 +41,22 @@ export default class Greeting extends LightningElement {
 
     async connectedCallback() {
 
-        // const queryOptions = {
-        //     query: ALL_LINKS
-        // };
-        // const observable = client.watchQuery(queryOptions);
-        // this.subscription = observable.subscribe(
-        //     this.observableNextCallback,
-        //     this.observableErrorCallback,
-        //     this.observableCompleteCallback
-        // );
-        // this.loading = true;
-        // try {
-        //     await client.query({query:ALL_LINKS});
-        //     this.loading = false;
-        // } catch (err) {
-        //     this.loading = false;
-        // }
+        const queryOptions = {
+            query: ALL_LINKS
+        };
+        const observable = client.watchQuery(queryOptions);
+        this.subscription = observable.subscribe(
+            this.observableNextCallback,
+            this.observableErrorCallback,
+            this.observableCompleteCallback
+        );
+        this.loading = true;
+        try {
+            await client.query({query:ALL_LINKS});
+            this.loading = false;
+        } catch (err) {
+            this.loading = false;
+        }
     }
 
     disconnectedCallback() {
