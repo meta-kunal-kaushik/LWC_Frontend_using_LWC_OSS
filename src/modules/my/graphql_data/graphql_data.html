@@ -6,8 +6,13 @@
         <template if:true={error}>
             <div>Error</div>
         </template>
-        <template if:false={error}>
+        <!-- <template if:false={error}>
             {links}
+        </template> -->
+        <template for:each={links} for:item="con">
+            <div key={field} class="slds-truncate" scope="col">{con.Name}   
+            {con.Id}
+               {con.Email}</div>
         </template>
     </template>
 </template>

@@ -4,7 +4,11 @@ import client from 'my/client';
 
 
 const ALL_LINKS = gql`{
-        testField
+        contacts {
+            Id
+            Name
+            Email
+        }
 }
 `;
     /*
@@ -66,7 +70,7 @@ export default class Greeting extends LightningElement {
 
     observableNextCallback = x => {
         console.log('x data ',x);
-        this.links = x.data.testField;
+        this.links = x.data.contacts;
         this.error = false;
         console.log(this.links);
     };

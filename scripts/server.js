@@ -5,7 +5,29 @@ const express = require('express');
 const path = require('path');
 
 const app = express();
-app.use(helmet());
+//app.use(helmet());
+app.use(helmet.dnsPrefetchControl());
+app.use(helmet.expectCt());
+app.use(helmet.frameguard());
+app.use(helmet.hidePoweredBy());
+app.use(helmet.hsts());
+app.use(helmet.ieNoOpen());
+app.use(helmet.noSniff());
+app.use(helmet.permittedCrossDomainPolicies());
+app.use(helmet.referrerPolicy());
+app.use(helmet.xssFilter());
+
+app.use(
+    helmet.contentSecurityPolicy({
+      directives: {
+        "default-src": ["'self'", "https:"],
+        "script-src": ["'self'","'unsafe-inline'"],
+        "style-src" : ["'self'","'unsafe-inline'"],
+        "connect-src": ["https://quiet-peak-14863.herokuapp.com/graphql"],
+      },
+    })
+  );
+
 app.use(compression());
 
 const HOST = process.env.HOST || 'localhost';
